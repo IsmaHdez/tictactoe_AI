@@ -2,6 +2,8 @@
 from gomoku import Gomoku  # assuming gomoku.py is the file containing the Gomoku class
 from GomokuGame import GomokuGame
 from Player import Player, HumanPlayer, RandomPlayer
+from QPlayer import QPlayer
+from PerfectPlayer import PerfectPlayer
 import logging
 import sys
 
@@ -30,10 +32,9 @@ if len(sys.argv) > 1:
 
 import random
 
-# player1_buffer = [RandomPlayer('RandomPlayer')]
-player1_buffer = [HumanPlayer('HumanPlayer')]
+player1_buffer = [QPlayer('Trained')]
 
-player2_buffer = [RandomPlayer('RandomPlayer')]
+player2_buffer = [RandomPlayer('Rand')]
 # player2_buffer = [HumanPlayer('HumanPlayer')]
 
 p1_score, p2_score, draws = 0.0, 0.0, 0
@@ -65,6 +66,6 @@ print(log_str)
 print(f'model perf. diff {((p1_score-draws/2)/training_episodes*100 - (p2_score-draws/2)/training_episodes*100):.2f}')
 
 for p in player1_buffer:
-    p.shutdown()
+    p.shutdown() 
 for p in player2_buffer:
     p.shutdown()
