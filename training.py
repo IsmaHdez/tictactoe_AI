@@ -34,7 +34,7 @@ import random
 
 player1_buffer = [QPlayer('Trained')]
 
-player2_buffer = [RandomPlayer('Rand')]
+player2_buffer = [PerfectPlayer('Chad')]
 # player2_buffer = [HumanPlayer('HumanPlayer')]
 
 p1_score, p2_score, draws = 0.0, 0.0, 0

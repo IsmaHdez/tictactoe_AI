@@ -56,8 +56,13 @@ class QPlayer(Player):
         if self._is_state_in_QTable(game_state)==False:
             return self._get_random_move(game_state)
         else:
-            column_with_best_move = self.QTable.loc[self.QTable['board']==self._serialize_board(game_state)][self._valid_moves_as_columns(game_state)].idxmax(axis=1)
-            return self._column_header_as_move(column_with_best_move.iloc[0])
+            row = self.QTable.loc[self.QTable['board'] == self._serialize_board(game_state)]
+            valid_moves = self._valid_moves_as_columns(game_state)
+            max_value = row[valid_moves].max(axis=1).values[0]
+            mask = row == max_value
+            columns_with_max_value = row.loc[:, mask.values[0]].columns
+            column_with_best_move = random.choice(columns_with_max_value)
+            return self._column_header_as_move(column_with_best_move)
     
     def _get_random_move(self, game_state):
         move = RandomPlayer('Temp').get_move(game_state)
