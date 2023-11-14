@@ -1,6 +1,4 @@
 from Player import Player, RandomPlayer
-from gomoku import Gomoku
-import pickle
 import os
 import random
 import copy

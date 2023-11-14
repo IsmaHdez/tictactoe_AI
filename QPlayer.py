@@ -1,10 +1,10 @@
 from Player import Player, RandomPlayer
-from gomoku import Gomoku
-import pickle
 import os
 import random
 import copy
 import pandas as pd
+
+
 
 LEARNING_RATE = 0.95
 INIT_EXPLORATION_RATE = 0

@@ -1,8 +1,5 @@
-/__pycache__
-/gomoku
-activateGomoku.bat
-Qtable*.csv
+/*
+*.csv
 *.bat
 *.log
 *.txt
-PerfectPlayer.py
