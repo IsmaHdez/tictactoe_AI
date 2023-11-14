@@ -5,7 +5,6 @@ import copy
 import pandas as pd
 
 LEARNING_RATE = 0.95
-INIT_EXPLORATION_RATE = 0
 DISCOUNT_FACTOR_GAMMA = 0.15
 CSV_COLUMNS = ["board",
                 "mv_0_0",
@@ -18,23 +17,20 @@ CSV_COLUMNS = ["board",
                 "mv_2_1",
                 "mv_2_2"]
 
-class QPlayer(Player):
+
+class QPlayerAggressive(Player):
     
     #-----------| Init |-----------#
     def __init__(self, name):
         super().__init__(name)
         self.QTable = self._init_table()
         self.last_game_state = {}
-        self.explorationRate = INIT_EXPLORATION_RATE
         self.last_move = ()
 
 
     #----------| Public |----------#
     def get_move(self,game_state):
-        if random.random()<self.explorationRate:
-            move = self._get_random_move(game_state)
-        else:
-            move = self._get_best_move(game_state)
+        move = self._get_best_move(game_state)
         
         self._set_reward(game_state,move,0)
         self.last_game_state = copy.deepcopy(game_state)
@@ -42,8 +38,8 @@ class QPlayer(Player):
         return move
 
     def score(self, score):
-        #Aggresive players feel bad when drawing. Momma didn't raise no drawer!
-        reward = -10 if score == 0 else 10 if score == 1 else -10
+        #Aggresive players feel bad when drawing
+        reward = 10 if score == 1 else -10
         self._set_reward(self.last_game_state,self.last_move,reward)
 
     def shutdown(self):

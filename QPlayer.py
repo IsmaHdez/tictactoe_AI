@@ -4,10 +4,7 @@ import random
 import copy
 import pandas as pd
 
-
-
 LEARNING_RATE = 0.95
-INIT_EXPLORATION_RATE = 0
 DISCOUNT_FACTOR_GAMMA = 0.15
 CSV_COLUMNS = ["board",
                     "mv_0_0",
@@ -27,16 +24,12 @@ class QPlayer(Player):
         super().__init__(name)
         self.QTable = self._init_table()
         self.last_game_state = {}
-        self.explorationRate = INIT_EXPLORATION_RATE
         self.last_move = ()
 
 
     #----------| Public |----------#
     def get_move(self,game_state):
-        if random.random()<self.explorationRate:
-            move = self._get_random_move(game_state)
-        else:
-            move = self._get_best_move(game_state)
+        move = self._get_best_move(game_state)
         
         self._set_reward(game_state,move,0)
         self.last_game_state = copy.deepcopy(game_state)

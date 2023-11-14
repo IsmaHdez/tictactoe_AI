@@ -4,6 +4,7 @@ from GomokuGame import GomokuGame
 from Player import Player, HumanPlayer, RandomPlayer
 from QPlayer import QPlayer
 from PerfectPlayer import PerfectPlayer
+from QPlayerAggressive import QPlayerAggressive
 import logging
 import sys
 
@@ -34,8 +35,8 @@ import random
 
 player1_buffer = [QPlayer('Trained')]
 
-player2_buffer = [PerfectPlayer('Chad')]
-# player2_buffer = [HumanPlayer('HumanPlayer')]
+player2_buffer = [PerfectPlayer('Perfect')]
+#player2_buffer = [HumanPlayer('HumanPlayer')]
 
 p1_score, p2_score, draws = 0.0, 0.0, 0
 t_p1_score, t_p2_score, t_draws = 0.0, 0.0, 0
